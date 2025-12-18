@@ -15,8 +15,9 @@
         form{
             margin: auto;
             width: 300px;
+            height: 150px;
             border: 3px solid maroon;
-            padding: 15px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 5px 5px 15px gray;
         }
@@ -31,6 +32,18 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        a{
+            text-decoration: none;
+            color: maroon;
+            font-weight: bold;
+            border: 2px solid maroon;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: bisque;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     </style>
 
 </head>
@@ -44,7 +57,11 @@
         <label for="pass">Password:</label>
         <input type="password" id="pass" name="pass" required><br><br>
 
-        <button type="submit">Login</button>
+        <button type="submit">Login</button><br><br>
+
+        <a href="./register.html"> Register here</a>
+
+    </form>
 
 </body>
 </html>
