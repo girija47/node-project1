@@ -29,6 +29,10 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, './public/register.html'));
 });
 
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/home.html'));
+});
+
 app.post('/register', async (req, res) => {
     try {
         const { name, mail, pass } = req.body;
@@ -52,6 +56,42 @@ app.post('/register', async (req, res) => {
     } catch (error) {
         console.error('Error registering user:', error);
         res.send('Error registering user');
+    }
+});
+
+app.post('/login', async (req, res) => {
+    try {
+        const { mail, pass } = req.body;
+
+        const userid = await User.findOne({ mail });
+        if (!userid) {
+            return res.send(`
+                <script>
+                    alert("User not found");
+                    window.location.href = '/';
+                </script>
+            `);
+        }
+
+        const isMatch = await bcrypt.compare(pass, userid.pass);
+        if (isMatch) {
+            res.send(`
+                <script>
+                    alert("Login successfully!!!");
+                    window.location.href = '/home';
+                </script>
+            `);
+        } else {
+            res.send(`
+                <script>
+                    alert("Invalid password");
+                    window.location.href = '/';
+                </script>
+            `);
+        }
+    } catch (error) {
+        console.error('Error on user id', error);
+        res.send('Error on user id');
     }
 });
 
