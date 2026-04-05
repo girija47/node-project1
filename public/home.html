@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        h2{
-            color: maroon;
-            text-align: center;
-            font-style: italic;
-            text-shadow: 2px 2px 5px bisque;
-        }
-    </style>
-
+    <title>Home | Student CRUD</title>
+    <link rel="stylesheet" href="./style.css/app.css">
 </head>
 <body>
-    
-    <h2>Welcome to Home Page</h2>
+    <div class="page">
+        <div class="header">
+            <div>
+                <h1>Student CRUD Dashboard</h1>
+                <p style="color: var(--muted); margin-top: 0.75rem;">Use the navigation buttons below to manage users, view records, and sign out.</p>
+            </div>
+            <div class="nav-links">
+                <a href="/home" class="nav-link secondary">View records</a>
+                <a href="/logout" class="nav-link danger">Logout</a>
+            </div>
+        </div>
 
+        <div class="card">
+            <h2 style="margin:0 0 1rem;">Welcome back!</h2>
+            <p style="margin:0; line-height:1.8; color: var(--muted);">This page is your application home. From here you can add new student records or browse existing entries.</p>
+        </div>
+    </div>
 </body>
 </html>

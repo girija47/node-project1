@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Record | Student CRUD</title>
+    <link rel="stylesheet" href="./style.css/app.css">
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div>
+                <h1>Edit student record</h1>
+                <p style="color: var(--muted); margin-top: 0.75rem;">Adjust the values below to update the selected entry.</p>
+            </div>
+            <div class="nav-links">
+                <a href="/home" class="nav-link secondary">Back to list</a>
+                <a href="/logout" class="nav-link danger">Logout</a>
+            </div>
+        </div>
+
+        <div class="card form-card">
+            <form action="/crud/update" method="post" enctype="multipart/form-data" class="form-grid">
+                <input type="hidden" name="id" id="id">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
+                </div>
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number" name="age" id="age" placeholder="Enter your age" required>
+                </div>
+                <div>
+                    <label for="num">Mobile number</label>
+                    <input type="number" name="num" id="num" placeholder="Enter your mobile number" required>
+                </div>
+                <div>
+                    <label for="email">Email address</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email id" required>
+                </div>
+                <div>
+                    <label for="district">District</label>
+                    <input type="text" name="district" id="district" placeholder="Enter your district" required>
+                </div>
+                <div>
+                    <label for="state">State</label>
+                    <input type="text" name="state" id="state" placeholder="Enter your state" required>
+                </div>
+                <div id="photo-preview"></div>
+                <div>
+                    <label for="new-photo">Upload new photo (optional)</label>
+                    <input type="file" name="photo" id="new-photo">
+                </div>
+                <div class="actions">
+                    <button type="submit" class="button primary">Update record</button>
+                    <a href="/home" class="button secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const photoPreview = document.getElementById('photo-preview');
+
+        async function data() {
+            const response = await fetch(`/crud/read/${id}`);
+            const data = await response.json();
+            document.getElementById('id').value = data._id;
+            document.getElementById('name').value = data.name;
+            document.getElementById('age').value = data.age;
+            document.getElementById('num').value = data.num;
+            document.getElementById('email').value = data.email;
+            document.getElementById('district').value = data.district;
+            document.getElementById('state').value = data.state;
+            photoPreview.innerHTML = `
+                <div class="record-card">
+                    <p><strong>Current photo</strong></p>
+                    <div class="image-wrap">
+                        <img src="./upload/${data.photo}" alt="Current profile photo">
+                    </div>
+                </div>
+            `;
+        }
+
+        data();
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Record | Student CRUD</title>
+    <link rel="stylesheet" href="./style.css/app.css">
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div>
+                <h1>Add a new student</h1>
+                <p style="color: var(--muted); margin-top: 0.75rem;">Complete the form below to add a new record to the system.</p>
+            </div>
+            <div class="nav-links">
+                <a href="/home" class="nav-link secondary">View records</a>
+                <a href="/logout" class="nav-link danger">Logout</a>
+            </div>
+        </div>
+
+        <div class="card form-card">
+            <form action="/crud/submit" method="post" enctype="multipart/form-data" class="form-grid">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                </div>
+                <div>
+                    <label for="num">Mobile number</label>
+                    <input type="number" id="num" name="num" placeholder="Enter mobile number" required>
+                </div>
+                <div>
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                </div>
+                <div>
+                    <label for="district">District</label>
+                    <input type="text" id="district" name="district" placeholder="Enter district" required>
+                </div>
+                <div>
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" placeholder="Enter state" required>
+                </div>
+                <div>
+                    <label for="photo">Profile photo</label>
+                    <input type="file" id="photo" name="photo" required>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="button primary">Submit</button>
+                    <a href="/home" class="button secondary">Back to list</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

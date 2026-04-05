@@ -1,0 +1,36 @@
+ h2 {
+            color: blue;
+            text-align: center;
+            font-style: italic;
+        }
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            margin-left: 20px;
+            border:2px solid black;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: yellow;
+            color: black;
+            position: relative;
+            top: 50px;
+        }
+        .dlt{
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .upt{
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }

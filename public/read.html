@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records | Student CRUD</title>
+    <link rel="stylesheet" href="./style.css/app.css">
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div>
+                <h1>Student records</h1>
+                <p style="color: var(--muted); margin-top: 0.75rem;">Browse, update, or delete any entry from the list below.</p>
+            </div>
+            <div class="nav-links">
+                <a href="/add-user" class="nav-link primary">Add record</a>
+                <a href="/logout" class="nav-link danger">Logout</a>
+            </div>
+        </div>
+
+        <div class="data-grid" id="data"></div>
+    </div>
+
+    <script>
+        async function loadData() {
+            const response = await fetch('/crud/getdata');
+            const data = await response.json();
+            const container = document.getElementById('data');
+            container.innerHTML = '';
+            data.forEach(item => {
+                container.innerHTML += `
+                    <div class="record-card">
+                        <div class="record-meta">
+                            <p><strong>Name:</strong> ${item.name}</p>
+                            <p><strong>Age:</strong> ${item.age}</p>
+                            <p><strong>Mobile:</strong> ${item.num}</p>
+                            <p><strong>Email:</strong> ${item.email}</p>
+                            <p><strong>District:</strong> ${item.district}</p>
+                            <p><strong>State:</strong> ${item.state}</p>
+                        </div>
+                        <div class="image-wrap">
+                            <img src="./upload/${item.photo}" alt="${item.name} photo">
+                        </div>
+                        <div class="record-footer">
+                            <button onclick="deletedata('${item._id}')" class="button danger">Delete</button>
+                            <button onclick="editdata('${item._id}')" class="button success">Update</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        async function deletedata(id) {
+            if (!confirm('Are you sure you want to delete this record?')) return;
+            const response = await fetch(`/crud/delete/${id}`, { method: 'DELETE' });
+            alert(await response.text());
+            loadData();
+        }
+
+        function editdata(id) {
+            window.location.href = `/edit?id=${id}`;
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
